@@ -119,7 +119,6 @@ window.addEventListener('load', (event) => {
       // TODO: write some code here
 
       card.classList.add("turned");
-      card.classList.add("current");
 
 
 
@@ -128,9 +127,8 @@ window.addEventListener('load', (event) => {
         let temp =0
         if (!memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])) {
           setTimeout(() => {
-
-            document.querySelectorAll(".current").forEach((item) => {
-              item.classList.remove("current");
+            let list = document.querySelectorAll(".turned:not(.blocked)");
+            list.forEach((item) => {
               item.classList.remove("turned");
             }
             )
@@ -139,8 +137,8 @@ window.addEventListener('load', (event) => {
 
         }else {
           memoryGame.pickedCards = [];
-          document.querySelectorAll(".current").forEach((item) => {
-            item.classList.remove("current");
+          document.querySelectorAll(".turned").forEach((item) => {
+            item.classList.add("blocked");
           })
           console.log(memoryGame.checkIfFinished());
         }
